@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Event - {{ event.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 40px;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            max-width: 500px;
+            margin: 40px auto;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 20px;
+        }
+        input[type=text], input[type=datetime-local], input[type=password], textarea {
+            margin-top: 5px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px; /* Added consistent margin-bottom for all fields */
+        }
+        input[type=submit] {
+            margin-top: 20px;
+            padding: 10px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        input[type=submit]:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 15px;
+            display: inline-block;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: #0056b3;
+        }
+        textarea {
+            height: 100px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#edit-event-form').on('submit', function(e) {
+                e.preventDefault(); // Prevent the default form submission
+                var formData = $(this).serialize();
+    
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ url_for('edit_event', event_id=event_id) }}",
+                    data: formData,
+                    success: function(response) {
+                        // Display a message based on the response status
+                        if (response['status'] === 'success') {
+                            $('#error-message').text('Event updated successfully.').css('color', 'green');
+                        } else {
+                            $('#error-message').text(response['message']).css('color', 'red');
+                        }
+                    },
+                    error: function() {
+                        $('#error-message').text('An error occurred while submitting the form.').css('color', 'red');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Event</h1>
+        <p>Please enter the event password to edit this event:</p>
+        <div id="error-message"></div>
+        <form id="edit-event-form">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="{{ event.title }}" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required>{{ event.description }}</textarea>
+
+            <!-- The time field's value needs formatting to fit the input's expected format -->
+            <label for="time">Time:</label>
+            <input type="datetime-local" id="time" name="time" value="{{ event.time|replace(' ', 'T') }}" required>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" value="{{ event.location }}" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Save Changes">
+        </form>
+        <a class="back-link" href="{{ url_for('event_page', event_id=event_id) }}">&larr; Back to Event</a>
+    </div>
+</body>
+</html>

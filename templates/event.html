@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event.title }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #f7f7f7;
+            text-align: center;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            max-width: 600px;
+            margin: 60px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .event-details {
+            text-align: left;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+        .event-detail {
+            margin-bottom: 10px;
+        }
+        .event-detail strong {
+            color: #333;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #0275d8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: #025aa5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ event.title }}</h1>
+        <p>{{ event.description }}</p>
+        <div class="event-details">
+            <div class="event-detail"><strong>When:</strong> {{ event.time }}</div>
+            <div class="event-detail"><strong>Where:</strong> {{ event.location }}</div>
+        </div>
+        
+        <div class="edit-link">
+            <a href="{{ url_for('edit_event', event_id=event_id) }}">Edit event</a>
+        </div>
+        
+        <a class="back-link" href="{{ url_for('index') }}">&larr; Create a new event</a>
+    </div>
+</body>
+</html>

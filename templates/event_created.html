@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Created</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            max-width: 500px;
+            margin: 40px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .event-link-container {
+            margin: 20px 0;
+            position: relative;
+        }
+        input[type=text] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Created</h1>
+        <p>Your event has been created successfully. Share the link below to invite people:</p>
+        <div class="event-link-container">
+            <input type="text" value="{{ event_url }}" id="eventLink" readonly>
+            <button onclick="copyToClipboard()">Copy Link</button>
+        </div>
+        <p><a href="{{ event_url }}">Visit Event Page</a></p>
+    </div>
+
+    <script>
+    function copyToClipboard() {
+        var copyText = document.getElementById("eventLink");
+        copyText.select();
+        document.execCommand("copy");
+        alert("Copied the link: " + copyText.value);
+    }
+    </script>
+</body>
+</html>
