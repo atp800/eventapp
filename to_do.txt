@@ -4,11 +4,11 @@ Advantages: Easy for users to use since they don't need to create an account. Re
 Disadvantages: If the link is shared, someone else could change the response. The links would need to be sent securely to the invitees (usually via email).
 
 
-
+- add ability to set optional image on event page?? -m incereases storage space needed and formatting compelxity, but adds potential for funny events
 - add optional invite list with going/not going statuses
-- add editable toggle to show/hide inviteess, and another toggle to show/hide goign status
+- add editable toggle to show/hide inviteess, and another toggle to show/hide going status
 - add ability to see invitees on event page
-- add ability to 
+- add ability for event creator to edit invitees status on edit event page
 - add unique links for each invitee which allows them to modify only their going status
 - retain general link which just lets people see event
 - add ability to enter an email or number alongside each invitee and auto-send their respective links when the event is created
