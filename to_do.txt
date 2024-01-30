@@ -1,0 +1,16 @@
+Unique RSVP Links: When an event creator adds a list of people they're inviting, generate a unique RSVP link for each invitee. Each link would have an associated unique identifier (like a UUID or a secure token) that corresponds to a specific invitee's status for that event. This link would take them to a page where they can set their status without needing to log in.
+
+Advantages: Easy for users to use since they don't need to create an account. Relatively secure since only someone with the link can change the status.
+Disadvantages: If the link is shared, someone else could change the response. The links would need to be sent securely to the invitees (usually via email).
+
+
+
+- add optional invite list with going/not going statuses
+- add editable toggle to show/hide inviteess, and another toggle to show/hide goign status
+- add ability to see invitees on event page
+- add ability to 
+- add unique links for each invitee which allows them to modify only their going status
+- retain general link which just lets people see event
+- add ability to enter an email or number alongside each invitee and auto-send their respective links when the event is created
+- add ability to send updates to creator when someone changes their status?? - complicated and unnecessary?
+- add ability to auto-send email when even details are updated (excluding invite list)
